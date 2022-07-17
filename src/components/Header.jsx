@@ -1,8 +1,15 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { setAuth } from '../redux/reducers/authSlice';
 
 export default function Header() {
-  const isAuth = JSON.parse(localStorage.getItem('currentUser'));
+  const auth = useSelector((state) => state.auth.value);
+  const dispatch = useDispatch();
+  const logout = () => {
+    localStorage.removeItem('currentUser');
+    dispatch(setAuth(false));
+  };
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg bg-white shadow-sm py-3">
@@ -45,7 +52,7 @@ export default function Header() {
               </li>
             </ul>
             <div>
-              {isAuth?.data?.name || (
+              {auth || (
                 <>
                   <NavLink to="/login" className="btn btn-outline-dark">
                     <i className="fa fa-sign-in me-1"></i>Login
@@ -55,8 +62,10 @@ export default function Header() {
                   </NavLink>
                 </>
               )}
-              {isAuth?.data && (
-                <button className="btn btn-outline-dark">Logout</button>
+              {auth && (
+                <button className="btn btn-outline-dark" onClick={logout}>
+                  Logout
+                </button>
               )}
               <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Cart

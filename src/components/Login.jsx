@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { setAuth } from '../redux/reducers/authSlice';
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -36,6 +39,7 @@ export default function Login() {
       if (user.email === state.email && user.password === state.password) {
         console.log('localstorage', user);
         localStorage.setItem('currentUser', JSON.stringify(user));
+        dispatch(setAuth(true));
         nav('/');
         return user;
       } else {
@@ -82,7 +86,7 @@ export default function Login() {
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <p classNameName="text-danger">{state.error}</p>
+          <p className="text-danger">{state.error}</p>
           <button className="w-100 btn btn-lg btn-primary" type="submit">
             Sign in
           </button>

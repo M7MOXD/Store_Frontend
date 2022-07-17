@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setAuth } from '../redux/reducers/authSlice';
 import axios from 'axios';
 
 export default function Signup() {
+  const dispatch = useDispatch();
   const nav = useNavigate();
   const [state, setState] = useState({
     name: '',
@@ -50,14 +53,14 @@ export default function Signup() {
     }
     setState({
       ...state,
-      errors: errors,
+      errors,
     });
-    if (state.errors.name || state.errors.email || state.errors.password) {
-      setState({ ...state, errors: {} });
+    if (state.errors?.name && state.errors?.email && state.errors?.password) {
       axios
         .post('http://127.0.0.1:3000/users', state)
         .then((res) => localStorage.setItem('currentUser', JSON.stringify(res)))
         .catch((e) => console.log(e));
+      dispatch(setAuth(true));
       nav('/');
     }
   };
