@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -8,7 +8,16 @@ export default function Login() {
     password: '',
     error: '',
   });
-  const[xusers, setXUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const nav = useNavigate();
+  useEffect(() => {
+    axios
+      .get('http://127.0.0.1:3000/users')
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
   const getEmail = (e) => {
     setState({
       ...state,
@@ -21,28 +30,19 @@ export default function Login() {
       password: e.target.value,
     });
   };
-  const nav = useNavigate();
   const submitLogin = (e) => {
     e.preventDefault();
-
-    const users = axios
-        .get('http://127.0.0.1:3000/users')
-        .then((res) => {
-          setXUsers(res.data)
-          
-        })
-        .catch((e) => console.log(e));
-
-    xusers.filter((user) => {
-        if (user.email === state.email && user.password === state.password){
-          console.log('localstorage', user);
-          localStorage.setItem('currentUser', JSON.stringify(user))
-          nav('/')
-        } else {
-            setState({...state,error:'Wrong email or password'});
-        }
-      
-    })
+    users.find((user) => {
+      if (user.email === state.email && user.password === state.password) {
+        console.log('localstorage', user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        nav('/');
+        return user;
+      } else {
+        setState({ ...state, error: 'Wrong email or password' });
+        return false;
+      }
+    });
   };
   return (
     <div
@@ -54,36 +54,36 @@ export default function Login() {
         paddingBottom: '40px',
       }}
     >
-      <main class="form-signin w-100 m-auto">
+      <main className="form-signin w-100 m-auto">
         <form onSubmit={submitLogin}>
-          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-          <div class="form-floating my-2">
+          <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+          <div className="form-floating my-2">
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="floatingInput"
               placeholder="name@example.com"
               onChange={getEmail}
             />
             <label for="floatingInput">Email address</label>
           </div>
-          <div class="form-floating my-2">
+          <div className="form-floating my-2">
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               id="floatingPassword"
               placeholder="Password"
               onChange={getPassword}
             />
             <label for="floatingPassword">Password</label>
           </div>
-          <div class="checkbox mb-3">
+          <div className="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <p className='text-danger'>{state.error}</p>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">
+          <p classNameName="text-danger">{state.error}</p>
+          <button className="w-100 btn btn-lg btn-primary" type="submit">
             Sign in
           </button>
         </form>

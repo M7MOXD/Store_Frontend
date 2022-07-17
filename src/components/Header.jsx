@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function Header() {
+  const isAuth = JSON.parse(localStorage.getItem('currentUser'));
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg bg-white shadow-sm py-3">
@@ -44,14 +45,19 @@ export default function Header() {
               </li>
             </ul>
             <div>
-              <NavLink to="/login" className="btn btn-outline-dark">
-                <i className="fa fa-sign-in me-1"></i>Login
-              </NavLink>
-
-              <NavLink to="/signup" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-user-plus me-1"></i>Register
-              </NavLink>
-
+              {isAuth?.data?.name || (
+                <>
+                  <NavLink to="/login" className="btn btn-outline-dark">
+                    <i className="fa fa-sign-in me-1"></i>Login
+                  </NavLink>
+                  <NavLink to="/signup" className="btn btn-outline-dark ms-2">
+                    <i className="fa fa-user-plus me-1"></i>Register
+                  </NavLink>
+                </>
+              )}
+              {isAuth?.data && (
+                <button className="btn btn-outline-dark">Logout</button>
+              )}
               <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Cart
               </NavLink>

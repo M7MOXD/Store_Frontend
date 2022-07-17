@@ -40,7 +40,7 @@ export default function Signup() {
     }
     if (!state.email) {
       errors.email = 'Email is Required';
-    } else if (/^\S+@\S+\.\S+$/.test(state.email)) {
+    } else if (!/^\S+@\S+\.\S+$/.test(state.email)) {
       errors.email = 'Invalid Email';
     }
     if (!state.password) {
@@ -52,10 +52,11 @@ export default function Signup() {
       ...state,
       errors: errors,
     });
-    if (!state.errors.name && !state.errors.email && !state.errors.password) {
+    if (state.errors.name || state.errors.email || state.errors.password) {
+      setState({ ...state, errors: {} });
       axios
         .post('http://127.0.0.1:3000/users', state)
-        .then((res) => console.log(res))
+        .then((res) => localStorage.setItem('currentUser', JSON.stringify(res)))
         .catch((e) => console.log(e));
       nav('/');
     }
@@ -83,6 +84,7 @@ export default function Signup() {
             />
             <label for="floatingName">Name</label>
           </div>
+          <p className="text-danger">{state.errors.name}</p>
           <div className="form-floating my-2">
             <input
               type="email"
@@ -93,6 +95,7 @@ export default function Signup() {
             />
             <label for="floatingInput">Email address</label>
           </div>
+          <p className="text-danger">{state.errors.email}</p>
           <div className="form-floating my-2">
             <input
               type="password"
@@ -103,12 +106,13 @@ export default function Signup() {
             />
             <label for="floatingPassword">Password</label>
           </div>
+          <p className="text-danger">{state.errors.password}</p>
           <div className="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button class="w-100 btn btn-lg btn-outline-dark" type="submit">
+          <button className="w-100 btn btn-lg btn-outline-dark" type="submit">
             Sign up
           </button>
         </form>
