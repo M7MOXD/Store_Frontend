@@ -108,8 +108,8 @@ export default function Signup() {
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button className="w-100 btn btn-lg btn-primary" type="submit">
-            Sign in
+          <button class="w-100 btn btn-lg btn-outline-dark" type="submit">
+            Sign up
           </button>
         </form>
       </main>
