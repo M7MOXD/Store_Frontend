@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Slider() {
   return (
@@ -32,7 +33,7 @@ export default function Slider() {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src="logo512.png" alt="" />
+            <img src="/images/bg.png" alt="women-collection" className='w-100' />
             <div className="container">
               <div className="carousel-caption text-start">
                 <h1>Example headline.</h1>
@@ -40,11 +41,9 @@ export default function Slider() {
                   Some representative placeholder content for the first slide of
                   the carousel.
                 </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#!">
-                    Sign up today
-                  </a>
-                </p>
+                  <NavLink to='/signup'>
+                    <p  className="btn btn-dark">Sign up today</p>
+                  </NavLink>
               </div>
             </div>
           </div>
@@ -58,15 +57,13 @@ export default function Slider() {
                   of the carousel.
                 </p>
                 <p>
-                  <a className="btn btn-lg btn-primary" href="#!">
-                    Learn more
-                  </a>
+                  <NavLink to="/products" className="btn btn-outline-dark">Learn more</NavLink>
                 </p>
               </div>
             </div>
           </div>
           <div className="carousel-item">
-            <img src="logo512.png" alt="" />
+            <img src="/images/product-package-boxes-shopping-bag-cart-with-laptop-online-shopping-delivery-concept_38716-138.webp" alt="men-collection" className='w-100' />
             <div className="container">
               <div className="carousel-caption text-end">
                 <h1>One more for good measure.</h1>
@@ -75,9 +72,9 @@ export default function Slider() {
                   this carousel.
                 </p>
                 <p>
-                  <a className="btn btn-lg btn-primary" href="#!">
-                    Browse gallery
-                  </a>
+                <p>
+                  <NavLink to="/products" className="btn btn-dark">Browse Gallery</NavLink>
+                </p>
                 </p>
               </div>
             </div>

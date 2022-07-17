@@ -1,4 +1,7 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
+
 
 export default function Market() {
   return (
@@ -14,24 +17,11 @@ export default function Market() {
               Some great placeholder content for the first featurette here.
               Imagine some exciting prose here.
             </p>
+            <NavLink to='/products' className="btn btn-outline-dark">See ALl Products</NavLink>
           </div>
           <div className="col-md-5">
-            <svg
-              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" />
-              <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                500x500
-              </text>
-            </svg>
+            
+            <img src="/images/men-collection.png" alt="" width="500px" height="500px" />
           </div>
         </div>
         <hr className="featurette-divider" />
@@ -46,24 +36,11 @@ export default function Market() {
               give you an idea of how this layout would work with some actual
               real-world content in place.
             </p>
+            <NavLink to='/products' className="btn btn-outline-dark">See ALl Products</NavLink>
           </div>
           <div className="col-md-5 order-md-1">
-            <svg
-              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" />
-              <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                500x500
-              </text>
-            </svg>
+          <img src="/images/accessories.webp" alt="" width="450px" height="450px" />
+          
           </div>
         </div>
         <hr className="featurette-divider" />
@@ -79,27 +56,13 @@ export default function Market() {
               here to give you a better view of what this would look like with
               some actual content. Your content.
             </p>
+            <NavLink to='/products' className="btn btn-outline-dark">See ALl Products</NavLink>
           </div>
           <div className="col-md-5">
-            <svg
-              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-              width="500"
-              height="500"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 500x500"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" />
-              <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                500x500
-              </text>
-            </svg>
+            <img src="/images/comp-accessories.png" alt="" width="450px" height="450px" />
+            
           </div>
         </div>
-        <hr className="featurette-divider" />
       </div>
     </React.Fragment>
   );
