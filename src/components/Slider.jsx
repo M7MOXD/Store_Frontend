@@ -32,8 +32,8 @@ export default function Slider() {
           ></button>
         </div>
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="/images/bg.png" alt="women-collection" className='w-100' />
+          <div className="carousel-item active" data-bs-interval="3000">
+            <img src="/images/bg.png" alt="" className="w-100" />
             <div className="container">
               <div className="carousel-caption text-start">
                 <h1>Example headline.</h1>
@@ -41,13 +41,13 @@ export default function Slider() {
                   Some representative placeholder content for the first slide of
                   the carousel.
                 </p>
-                  <NavLink to='/signup'>
-                    <p  className="btn btn-dark">Sign up today</p>
-                  </NavLink>
+                <NavLink to="/signup">
+                  <p className="btn btn-dark">Sign up today</p>
+                </NavLink>
               </div>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" data-bs-interval="3000">
             <img src="logo512.png" alt="" />
             <div className="container">
               <div className="carousel-caption">
@@ -57,13 +57,19 @@ export default function Slider() {
                   of the carousel.
                 </p>
                 <p>
-                  <NavLink to="/products" className="btn btn-outline-dark">Learn more</NavLink>
+                  <NavLink to="/products" className="btn btn-dark">
+                    Learn more
+                  </NavLink>
                 </p>
               </div>
             </div>
           </div>
-          <div className="carousel-item">
-            <img src="/images/product-package-boxes-shopping-bag-cart-with-laptop-online-shopping-delivery-concept_38716-138.webp" alt="men-collection" className='w-100' />
+          <div className="carousel-item" data-bs-interval="3000">
+            <img
+              src="/images/product-package-boxes-shopping-bag-cart-with-laptop-online-shopping-delivery-concept_38716-138.webp"
+              alt=""
+              className="w-100"
+            />
             <div className="container">
               <div className="carousel-caption text-end">
                 <h1>One more for good measure.</h1>
@@ -72,9 +78,11 @@ export default function Slider() {
                   this carousel.
                 </p>
                 <p>
-                <p>
-                  <NavLink to="/products" className="btn btn-dark">Browse Gallery</NavLink>
-                </p>
+                  <p>
+                    <NavLink to="/products" className="btn btn-dark">
+                      Browse Gallery
+                    </NavLink>
+                  </p>
                 </p>
               </div>
             </div>

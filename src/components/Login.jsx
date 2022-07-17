@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Login() {
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  });
+  const getEmail = (e) => {
+    setState({
+      ...state,
+      email: e.target.value,
+    });
+  };
+  const getPassword = (e) => {
+    setState({
+      ...state,
+      password: e.target.value,
+    });
+  };
+  const submitLogin = (e) => {
+    e.preventDefault();
+  };
   return (
     <div
       style={{
@@ -12,14 +31,15 @@ export default function Login() {
       }}
     >
       <main class="form-signin w-100 m-auto">
-        <form>
+        <form onSubmit={submitLogin}>
           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-          <div class="form-floating">
+          <div class="form-floating my-2">
             <input
               type="email"
               class="form-control"
               id="floatingInput"
               placeholder="name@example.com"
+              onChange={getEmail}
             />
             <label for="floatingInput">Email address</label>
           </div>
@@ -29,6 +49,7 @@ export default function Login() {
               class="form-control"
               id="floatingPassword"
               placeholder="Password"
+              onChange={getPassword}
             />
             <label for="floatingPassword">Password</label>
           </div>

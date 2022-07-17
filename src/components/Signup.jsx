@@ -1,6 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function Signup() {
+  const [state, setState] = useState({
+    name: '',
+    email: '',
+    password: '',
+    errors: {},
+  });
+  const getName = (e) => {
+    setState({
+      ...state,
+      name: e.target.value,
+    });
+  };
+  const getEmail = (e) => {
+    setState({
+      ...state,
+      email: e.target.value,
+    });
+  };
+  const getPassword = (e) => {
+    setState({
+      ...state,
+      password: e.target.value,
+    });
+  };
+  const submitSignup = (e) => {
+    e.preventDefault();
+    let errors = {};
+    if (!state.name) {
+      errors.name = 'Name is Required';
+    } else if (state.name.length < 4) {
+      errors.name = 'Name must be greater than 4 character';
+    } else if (!/^[a-zA-Z\s]+$/.test(state.name)) {
+      errors.name = 'Name must be String';
+    }
+    if (!state.email) {
+      errors.email = 'Email is Required';
+    } else if (/^\S+@\S+\.\S+$/.test(state.email)) {
+      errors.email = 'Invalid Email';
+    }
+    if (!state.password) {
+      errors.password = 'Password is Required';
+    } else if (state.password.length < 8) {
+      errors.password = 'Password must be greater than 8 character';
+    }
+    setState({
+      ...state,
+      errors: errors,
+    });
+    if (!state.errors.name && !state.errors.email && !state.errors.password) {
+      axios
+        .post('http://127.0.0.1/users', { id: 100, ...state })
+        .then((res) => console.log(res))
+        .catch((e) => console.log(e));
+    }
+  };
   return (
     <div
       style={{
@@ -12,16 +68,15 @@ export default function Signup() {
       }}
     >
       <main class="form-signin w-100 m-auto">
-        <form>
-
+        <form onSubmit={submitSignup}>
           <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
-
-          <div class="form-floating">
+          <div class="form-floating my-2">
             <input
               type="text"
               class="form-control"
               id="floatingName"
               placeholder="John Doe"
+              onChange={getName}
             />
             <label for="floatingName">Name</label>
           </div>
@@ -31,15 +86,17 @@ export default function Signup() {
               class="form-control"
               id="floatingInput"
               placeholder="name@example.com"
+              onChange={getEmail}
             />
             <label for="floatingInput">Email address</label>
           </div>
-          <div class="form-floating">
+          <div class="form-floating my-2">
             <input
               type="password"
               class="form-control"
               id="floatingPassword"
               placeholder="Password"
+              onChange={getPassword}
             />
             <label for="floatingPassword">Password</label>
           </div>

@@ -1,7 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-
-
+import { NavLink } from 'react-router-dom';
 
 export default function Market() {
   return (
@@ -17,11 +15,17 @@ export default function Market() {
               Some great placeholder content for the first featurette here.
               Imagine some exciting prose here.
             </p>
-            <NavLink to='/products' className="btn btn-outline-dark">See ALl Products</NavLink>
+            <NavLink to="/products" className="btn btn-outline-dark">
+              See All Products
+            </NavLink>
           </div>
           <div className="col-md-5">
-            
-            <img src="/images/men-collection.png" alt="" width="500px" height="500px" />
+            <img
+              src="/images/men-collection.png"
+              alt=""
+              width="500px"
+              height="500px"
+            />
           </div>
         </div>
         <hr className="featurette-divider" />
@@ -36,11 +40,17 @@ export default function Market() {
               give you an idea of how this layout would work with some actual
               real-world content in place.
             </p>
-            <NavLink to='/products' className="btn btn-outline-dark">See ALl Products</NavLink>
+            <NavLink to="/products" className="btn btn-outline-dark">
+              See All Products
+            </NavLink>
           </div>
           <div className="col-md-5 order-md-1">
-          <img src="/images/accessories.webp" alt="" width="450px" height="450px" />
-          
+            <img
+              src="/images/accessories.webp"
+              alt=""
+              width="450px"
+              height="450px"
+            />
           </div>
         </div>
         <hr className="featurette-divider" />
@@ -56,11 +66,17 @@ export default function Market() {
               here to give you a better view of what this would look like with
               some actual content. Your content.
             </p>
-            <NavLink to='/products' className="btn btn-outline-dark">See ALl Products</NavLink>
+            <NavLink to="/products" className="btn btn-outline-dark">
+              See All Products
+            </NavLink>
           </div>
           <div className="col-md-5">
-            <img src="/images/comp-accessories.png" alt="" width="450px" height="450px" />
-            
+            <img
+              src="/images/comp-accessories.png"
+              alt=""
+              width="450px"
+              height="450px"
+            />
           </div>
         </div>
       </div>
