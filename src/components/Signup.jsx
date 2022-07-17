@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Signup() {
+  const nav = useNavigate();
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -52,9 +54,10 @@ export default function Signup() {
     });
     if (!state.errors.name && !state.errors.email && !state.errors.password) {
       axios
-        .post('http://127.0.0.1/users', { id: 100, ...state })
+        .post('http://127.0.0.1:3000/users', state)
         .then((res) => console.log(res))
         .catch((e) => console.log(e));
+      nav('/');
     }
   };
   return (
@@ -67,45 +70,45 @@ export default function Signup() {
         paddingBottom: '40px',
       }}
     >
-      <main class="form-signin w-100 m-auto">
+      <main className="form-signin w-100 m-auto">
         <form onSubmit={submitSignup}>
-          <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
-          <div class="form-floating my-2">
+          <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
+          <div className="form-floating my-2">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="floatingName"
               placeholder="John Doe"
               onChange={getName}
             />
             <label for="floatingName">Name</label>
           </div>
-          <div class="form-floating my-2">
+          <div className="form-floating my-2">
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="floatingInput"
               placeholder="name@example.com"
               onChange={getEmail}
             />
             <label for="floatingInput">Email address</label>
           </div>
-          <div class="form-floating my-2">
+          <div className="form-floating my-2">
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               id="floatingPassword"
               placeholder="Password"
               onChange={getPassword}
             />
             <label for="floatingPassword">Password</label>
           </div>
-          <div class="checkbox mb-3">
+          <div className="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">
+          <button className="w-100 btn btn-lg btn-primary" type="submit">
             Sign in
           </button>
         </form>
