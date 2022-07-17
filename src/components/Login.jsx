@@ -1,10 +1,14 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [state, setState] = useState({
     email: '',
     password: '',
+    error: '',
   });
+  const[xusers, setXUsers] = useState([]);
   const getEmail = (e) => {
     setState({
       ...state,
@@ -17,8 +21,28 @@ export default function Login() {
       password: e.target.value,
     });
   };
+  const nav = useNavigate();
   const submitLogin = (e) => {
     e.preventDefault();
+
+    const users = axios
+        .get('http://127.0.0.1:3000/users')
+        .then((res) => {
+          setXUsers(res.data)
+          
+        })
+        .catch((e) => console.log(e));
+
+    xusers.filter((user) => {
+        if (user.email === state.email && user.password === state.password){
+          console.log('localstorage', user);
+          localStorage.setItem('currentUser', JSON.stringify(user))
+          nav('/')
+        } else {
+            setState({...state,error:'Wrong email or password'});
+        }
+      
+    })
   };
   return (
     <div
@@ -58,6 +82,7 @@ export default function Login() {
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
+          <p className='text-danger'>{state.error}</p>
           <button class="w-100 btn btn-lg btn-primary" type="submit">
             Sign in
           </button>

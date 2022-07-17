@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Signup() {
+
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -26,6 +29,7 @@ export default function Signup() {
       password: e.target.value,
     });
   };
+  const nav = useNavigate();
   const submitSignup = (e) => {
     e.preventDefault();
     let errors = {};
@@ -52,9 +56,10 @@ export default function Signup() {
     });
     if (!state.errors.name && !state.errors.email && !state.errors.password) {
       axios
-        .post('http://127.0.0.1/users', { id: 100, ...state })
+        .post('http://127.0.0.1:3000/users',  state)
         .then((res) => console.log(res))
         .catch((e) => console.log(e));
+        nav('/');
     }
   };
   return (
@@ -105,9 +110,9 @@ export default function Signup() {
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">
-            Sign in
-          </button>
+            <button class="w-100 btn btn-lg btn-outline-dark" type="submit">
+              Sign up
+            </button>
         </form>
       </main>
     </div>
