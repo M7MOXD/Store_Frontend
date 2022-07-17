@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Slider() {
   return (
@@ -41,9 +42,9 @@ export default function Slider() {
                   the carousel.
                 </p>
                 <p>
-                  <a className="btn btn-lg btn-primary" href="#!">
+                  <NavLink className="btn btn-lg btn-primary" to="/signup">
                     Sign up today
-                  </a>
+                  </NavLink>
                 </p>
               </div>
             </div>
@@ -58,9 +59,9 @@ export default function Slider() {
                   of the carousel.
                 </p>
                 <p>
-                  <a className="btn btn-lg btn-primary" href="#!">
+                  <NavLink className="btn btn-lg btn-primary" to="/products">
                     Learn more
-                  </a>
+                  </NavLink>
                 </p>
               </div>
             </div>
@@ -75,9 +76,9 @@ export default function Slider() {
                   this carousel.
                 </p>
                 <p>
-                  <a className="btn btn-lg btn-primary" href="#!">
+                  <NavLink className="btn btn-lg btn-primary" to="/products">
                     Browse gallery
-                  </a>
+                  </NavLink>
                 </p>
               </div>
             </div>
