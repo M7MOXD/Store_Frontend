@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setAuth } from '../redux/reducers/authSlice';
 
 export default function Header() {
+  const [user, setUser] = useState({});
   const auth = useSelector((state) => state.auth.value);
   const dispatch = useDispatch();
   const logout = () => {
     localStorage.removeItem('currentUser');
     dispatch(setAuth(false));
   };
-  const user = JSON.parse(localStorage.getItem('currentUser'));
-
+  if (localStorage.getItem('currentUser')) {
+    dispatch(setAuth(true));
+  }
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('currentUser')));
+  }, []);
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg bg-white shadow-sm py-3">
@@ -64,7 +69,11 @@ export default function Header() {
                   </NavLink>
                 </>
               )}
-              {auth && (<span className='lead fw-bolder me-3' >{user.name}</span>)}
+              {auth && (
+                <span className="lead fw-bold me-3 text-muted">
+                  {user.name}
+                </span>
+              )}
               {auth && (
                 <button className="btn btn-outline-dark" onClick={logout}>
                   Logout

@@ -55,26 +55,16 @@ export default function Signup() {
       ...state,
       errors,
     });
-    console.log('before if');
-    console.log(state.errors);
-    console.log(state.errors?.name && state.errors?.email && state.errors?.password);
-    // the problem here is that the condition below return undefined so the code desen't 
-    // perform the condition and hence the post request tried another cindition and it 
-    // back to the second click submit problem again
-    if (state.errors?.name && state.errors?.email && state.errors?.password) {
-      console.log('inside if');
-      console.log('before axios');
+    if (!Object.keys(errors).length) {
       axios
         .post('http://127.0.0.1:3000/users', state)
-        .then((res) => localStorage.setItem('currentUser', JSON.stringify(res.data)))
+        .then((res) =>
+          localStorage.setItem('currentUser', JSON.stringify(res.data))
+        )
         .catch((e) => console.log(e));
-        console.log('after axios');
-
       dispatch(setAuth(true));
       nav('/');
     }
-    console.log('after if');
-
   };
   return (
     <div
