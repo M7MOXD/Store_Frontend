@@ -10,6 +10,8 @@ export default function Header() {
     localStorage.removeItem('currentUser');
     dispatch(setAuth(false));
   };
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg bg-white shadow-sm py-3">
@@ -62,6 +64,7 @@ export default function Header() {
                   </NavLink>
                 </>
               )}
+              {auth && (<span className='lead fw-bolder me-3' >{user.name}</span>)}
               {auth && (
                 <button className="btn btn-outline-dark" onClick={logout}>
                   Logout
